@@ -1,10 +1,17 @@
 # Uncorked
 
-Snap. Sip. Remember.
+**Snap. Sip. Remember.**
 
-Coming soon to the App Store.
+Uncorked helps you remember the wines you love.
+
+Snap a photo of any wine label and let Uncorked do the rest. The app automatically extracts the wine's name, winery, region, and grape varieties — no typing required.
+
+Build your collection. Add tasting notes. Keep a wishlist of wines to try. Learn fun facts along the way.
+
+Your data stays on your device. No accounts, no cloud, no tracking.
+
+**Coming soon to the App Store.**
 
 ---
 
-- [Privacy Policy](privacy)
-- [App Store Copy](app-store-copy) *(internal reference)*
+[Privacy Policy](privacy)
