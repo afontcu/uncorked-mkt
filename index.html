@@ -126,7 +126,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 60px 24px;
+      padding: 80px 24px 100px;
       text-align: center;
       position: relative;
     }
@@ -241,6 +241,36 @@
     .cta-note {
       font-size: 0.9rem;
       color: var(--ink-light);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink-light);
+      font-size: 0.8rem;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .scroll-hint:hover {
+      opacity: 0.8;
+    }
+
+    .scroll-hint svg {
+      width: 20px;
+      height: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
     }
 
     /* How it works */
@@ -516,6 +546,10 @@
       .features-grid {
         grid-template-columns: 1fr;
       }
+
+      .scroll-hint {
+        display: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -584,10 +618,16 @@
         <span class="cta-note">Free to download. No account needed.</span>
       </div>
 
+      <a href="#how-it-works" class="scroll-hint">
+        <span>Scroll to explore</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </a>
     </section>
 
     <!-- How it works -->
-    <section class="section">
+    <section id="how-it-works" class="section">
       <div class="section-header">
         <p class="section-label">How It Works</p>
         <h2 class="section-title">Easier than pronouncing Gewürztraminer</h2>
