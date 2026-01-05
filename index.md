@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="icon.png" alt="Uncorked" width="120" style="border-radius: 24px;">
+</p>
+
 # Uncorked
 
 **Snap. Sip. Remember.**
