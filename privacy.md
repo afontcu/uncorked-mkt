@@ -45,7 +45,7 @@ If we update this policy, we'll post the new version here with an updated date.
 
 ## Contact
 
-Questions? Reach out at: **afontcu@gmail.com**
+Questions? [Get in touch](https://docs.google.com/forms/d/e/1FAIpQLSeqgb4r6Ez3WQSzGRbRZA_HNLOWEcs-tSoEN6WwY6wsIt2YYw/viewform).
 
 ---
 
