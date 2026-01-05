@@ -243,32 +243,6 @@
       color: var(--ink-light);
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--ink-light);
-      font-size: 0.85rem;
-      opacity: 0.6;
-      animation: fadeUp 0.8s ease-out 0.5s both;
-    }
-
-    .scroll-hint svg {
-      width: 24px;
-      height: 24px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-    }
-
     /* How it works */
     .section {
       padding: 100px 24px;
@@ -401,34 +375,48 @@
     }
 
     .feature-icon-wrap {
-      width: 56px;
-      height: 56px;
-      background: var(--cream);
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--wine) 0%, var(--wine-light) 100%);
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(114, 47, 55, 0.2);
+    }
+
+    .feature-icon-wrap svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+      stroke-width: 1.5;
     }
 
     .feature-title {
       font-family: 'Fraunces', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       color: var(--ink);
     }
 
     .feature-desc {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--ink-light);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    /* Last feature card spans full width on desktop */
-    .feature-card:last-child {
-      grid-column: 1 / -1;
+    .feature-highlight {
+      display: inline-block;
+      background: var(--cream-dark);
+      color: var(--wine);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 16px;
+      letter-spacing: 0.02em;
     }
 
     /* Quote section */
@@ -528,14 +516,6 @@
       .features-grid {
         grid-template-columns: 1fr;
       }
-
-      .feature-card:last-child {
-        grid-column: auto;
-      }
-
-      .scroll-hint {
-        display: none;
-      }
     }
 
     @media (max-width: 480px) {
@@ -604,12 +584,6 @@
         <span class="cta-note">Free to download. No account needed.</span>
       </div>
 
-      <div class="scroll-hint">
-        <span>Learn more</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-      </div>
     </section>
 
     <!-- How it works -->
@@ -652,33 +626,50 @@
 
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon-wrap">📷</div>
-          <h3 class="feature-title">AI Label Reading</h3>
-          <p class="feature-desc">Point at a label, get the details. Winery, region, vintage, grapes — all without squinting at tiny text.</p>
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Smart Label Scanning</h3>
+          <p class="feature-desc">Snap a photo and get more than just text — Uncorked identifies the wine and enriches it with region info, grape varieties, and tasting context. No typing, no googling.</p>
+          <span class="feature-highlight">AI-powered</span>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrap">⭐</div>
-          <h3 class="feature-title">Your Ratings</h3>
-          <p class="feature-desc">Stars, notes, whatever works. "Would buy again" is a perfectly valid tasting note.</p>
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Rate Your Way</h3>
+          <p class="feature-desc">Quick 5-star rating for a casual Tuesday bottle, or detailed tasting notes when you've found something special. As simple or thorough as you want.</p>
+          <span class="feature-highlight">Flexible</span>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrap">📋</div>
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
           <h3 class="feature-title">Wishlist</h3>
-          <p class="feature-desc">Saw a bottle you can't afford this week? Save it. Dream big.</p>
+          <p class="feature-desc">Spotted a bottle at a restaurant? Got a recommendation from a friend? Save it to your wishlist and remember it when you're at the wine shop.</p>
+          <span class="feature-highlight">Never forget</span>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon-wrap">💡</div>
-          <h3 class="feature-title">Wine Bits</h3>
-          <p class="feature-desc">Fun facts, food pairings, regional tidbits. Impress your friends without the sommelier attitude.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon-wrap">📱</div>
-          <h3 class="feature-title">Offline & Private</h3>
-          <p class="feature-desc">No accounts, no cloud, no fuss. Your wine diary stays on your phone.</p>
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Learn As You Drink</h3>
+          <p class="feature-desc">Each wine comes with fun facts — regional history, food pairings, what makes it special. Build confidence without the pretension or the sommelier course.</p>
+          <span class="feature-highlight">Wine curious</span>
         </div>
       </div>
     </section>
