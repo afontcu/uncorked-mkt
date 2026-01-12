@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uncorked — Snap. Sip. Remember.</title>
-  <meta name="description" content="Your personal wine collection app. Snap a photo of any wine label and let Uncorked do the rest.">
+  <title>Uncorked — Scan Wine. Learn More.</title>
+  <meta name="description" content="You have wine photos going back years. Import them all at once. Our AI reads the labels and tells you what made each wine special.">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,12 +13,12 @@
     :root {
       --wine: #722F37;
       --wine-dark: #5a252c;
-      --wine-light: #8b3d47;
+      --wine-light: #9b4a54;
       --cream: #faf6f2;
       --cream-dark: #f0e8e0;
       --blush: #e8d5d0;
       --ink: #2a1f1f;
-      --ink-light: #5c4a4a;
+      --ink-light: #6b5454;
       --gold: #c9a962;
     }
 
@@ -30,18 +30,20 @@
 
     html {
       scroll-behavior: smooth;
+      font-size: 20px;
     }
 
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--ink);
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    /* Decorative background elements */
-    .bg-shapes {
+    /* Subtle dot pattern + warm glow */
+    body::before {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
@@ -49,285 +51,221 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(114, 47, 55, 0.09) 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
-    .wine-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid var(--blush);
-      opacity: 0.6;
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 10%, rgba(114, 47, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 70% at 90% 20%, rgba(232, 213, 208, 0.7) 0%, transparent 45%),
+        radial-gradient(ellipse 90% 80% at 5% 90%, rgba(232, 213, 208, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(114, 47, 55, 0.06) 0%, transparent 40%);
     }
 
-    .wine-ring-1 {
-      width: 400px;
-      height: 400px;
-      top: -100px;
-      right: -100px;
-      border-width: 2px;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    .wine-ring-2 {
-      width: 300px;
-      height: 300px;
-      bottom: 20%;
-      left: -80px;
-      animation: float 25s ease-in-out infinite reverse;
-    }
-
-    .wine-ring-3 {
-      width: 200px;
-      height: 200px;
-      top: 40%;
-      right: 5%;
-      opacity: 0.3;
-      animation: float 18s ease-in-out infinite 2s;
-    }
-
-    .wine-stain {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, var(--blush) 0%, transparent 70%);
-      opacity: 0.4;
-    }
-
-    .wine-stain-1 {
-      width: 500px;
-      height: 500px;
-      top: 10%;
-      left: -15%;
-    }
-
-    .wine-stain-2 {
-      width: 600px;
-      height: 600px;
-      bottom: -10%;
-      right: -20%;
-      opacity: 0.3;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(10px, -15px) rotate(2deg); }
-      66% { transform: translate(-8px, 10px) rotate(-1deg); }
-    }
-
-    /* Main content */
     main {
       position: relative;
       z-index: 1;
     }
 
-    /* Hero section */
+    /* Hero - warm and inviting */
     .hero {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 80px 24px 100px;
+      padding: 60px 32px 80px;
       text-align: center;
-      position: relative;
     }
 
     .icon-wrapper {
-      position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
 
     .icon {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 32px;
       box-shadow:
-        0 20px 60px rgba(114, 47, 55, 0.25),
-        0 8px 20px rgba(114, 47, 55, 0.15);
-      animation: iconFloat 6s ease-in-out infinite;
+        0 16px 48px rgba(114, 47, 55, 0.2),
+        0 6px 16px rgba(114, 47, 55, 0.1);
+      animation: gentleFloat 6s ease-in-out infinite;
     }
 
-    .icon-glow {
-      position: absolute;
-      inset: -20px;
-      background: radial-gradient(circle, rgba(114, 47, 55, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    @keyframes iconFloat {
+    @keyframes gentleFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
 
     .brand {
       font-family: 'Fraunces', serif;
-      font-size: clamp(3.5rem, 10vw, 5.5rem);
+      font-size: clamp(3.5rem, 12vw, 6rem);
       font-weight: 600;
-      font-optical-sizing: auto;
       letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       animation: fadeUp 0.8s ease-out;
     }
 
     .tagline {
       font-family: 'Fraunces', serif;
-      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      font-size: clamp(1.4rem, 4vw, 2rem);
       font-weight: 400;
       font-style: italic;
       color: var(--wine);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       animation: fadeUp 0.8s ease-out 0.1s both;
     }
 
     .hero-description {
       font-size: 1.15rem;
       color: var(--ink-light);
-      max-width: 480px;
-      margin-bottom: 40px;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.75;
       animation: fadeUp 0.8s ease-out 0.2s both;
     }
 
     .hero-description strong {
       color: var(--ink);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .cta-group {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
       animation: fadeUp 0.8s ease-out 0.3s both;
     }
 
     .cta-primary {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       background: var(--wine);
       color: white;
-      padding: 18px 36px;
+      padding: 20px 40px;
       border-radius: 100px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(114, 47, 55, 0.3);
+      box-shadow: 0 8px 32px rgba(114, 47, 55, 0.25);
     }
 
     .cta-primary:hover {
       background: var(--wine-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(114, 47, 55, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(114, 47, 55, 0.35);
     }
 
     .cta-primary svg {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
     }
 
     .cta-note {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--ink-light);
+      font-weight: 500;
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
+    /* Screenshots placeholder */
+    .screenshots {
+      padding: 40px 32px 80px;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .phone-placeholder {
+      width: 180px;
+      height: 380px;
+      border: 2px dashed var(--blush);
+      border-radius: 32px;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      color: var(--ink-light);
-      font-size: 0.8rem;
-      opacity: 0.5;
-      transition: opacity 0.3s ease;
+      justify-content: center;
+      color: var(--blush);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 20px;
+      transition: border-color 0.3s ease, color 0.3s ease;
     }
 
-    .scroll-hint:hover {
-      opacity: 0.8;
+    .phone-placeholder:hover {
+      border-color: var(--wine-light);
+      color: var(--wine-light);
     }
 
-    .scroll-hint svg {
-      width: 20px;
-      height: 20px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
-    }
-
-    /* How it works */
+    /* Section basics */
     .section {
-      padding: 100px 24px;
-      max-width: 1100px;
+      padding: 120px 32px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 64px;
+      margin-bottom: 72px;
     }
 
     .section-label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       color: var(--wine);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .section-title {
       font-family: 'Fraunces', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 500;
       color: var(--ink);
       letter-spacing: -0.02em;
     }
 
-    /* Flow section - how it works */
+    /* How it works - friendly steps */
     .flow-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      position: relative;
-    }
-
-    .flow-grid::before {
-      content: '';
-      position: absolute;
-      top: 60px;
-      left: 20%;
-      right: 20%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--blush), var(--blush), transparent);
+      gap: 40px;
     }
 
     .flow-step {
       text-align: center;
-      position: relative;
+      padding: 40px 24px;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 4px 24px rgba(114, 47, 55, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .flow-step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(114, 47, 55, 0.1);
     }
 
     .flow-number {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       background: var(--wine);
       color: white;
       border-radius: 50%;
@@ -335,147 +273,144 @@
       align-items: center;
       justify-content: center;
       font-family: 'Fraunces', serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 600;
-      margin: 0 auto 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .flow-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      display: block;
+      margin: 0 auto 28px;
     }
 
     .flow-title {
       font-family: 'Fraunces', serif;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       color: var(--ink);
+      line-height: 1.3;
     }
 
     .flow-desc {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       color: var(--ink-light);
-      max-width: 240px;
+      line-height: 1.7;
+    }
+
+    /* Stats banner - warm and proud */
+    .stats-banner {
+      background: var(--wine);
+      padding: 64px 32px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    /* Features section */
-    .features-section {
-      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .feature-card {
-      background: white;
-      border-radius: 24px;
-      padding: 40px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(114, 47, 55, 0.12);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--wine), var(--wine-light));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
-    }
-
-    .feature-icon-wrap {
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, var(--wine) 0%, var(--wine-light) 100%);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 16px rgba(114, 47, 55, 0.2);
-    }
-
-    .feature-icon-wrap svg {
-      width: 28px;
-      height: 28px;
+    .stat {
       color: white;
-      stroke-width: 1.5;
+    }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 7vw, 4rem);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Features - editorial numbered list */
+    .features-section {
+      background: var(--cream);
+      padding: 120px 32px;
+      position: relative;
+    }
+
+    .features-section .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .feature-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 40px;
+      padding: 56px 0;
+      border-bottom: 1px solid var(--blush);
+      align-items: start;
+    }
+
+    .feature-item:first-child {
+      padding-top: 0;
+    }
+
+    .feature-item:last-child {
+      border-bottom: none;
+    }
+
+    .feature-number {
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--blush);
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .feature-item:hover .feature-number {
+      color: var(--wine-light);
+    }
+
+    .feature-content {
+      padding-top: 8px;
     }
 
     .feature-title {
       font-family: 'Fraunces', serif;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       color: var(--ink);
     }
 
     .feature-desc {
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       color: var(--ink-light);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
-    .feature-highlight {
-      display: inline-block;
-      background: var(--cream-dark);
-      color: var(--wine);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 100px;
-      margin-top: 16px;
-      letter-spacing: 0.02em;
+    /* Alternate alignment for visual rhythm */
+    .feature-item:nth-child(even) {
+      grid-template-columns: 1fr 80px;
+      text-align: right;
     }
 
-    /* Quote section */
-    .quote-section {
-      background: var(--wine);
-      color: white;
-      padding: 80px 24px;
-      text-align: center;
+    .feature-item:nth-child(even) .feature-number {
+      order: 2;
     }
 
-    .quote {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      font-weight: 400;
-      font-style: italic;
-      max-width: 700px;
-      margin: 0 auto 16px;
-      line-height: 1.5;
-    }
-
-    .quote-attr {
-      font-size: 0.95rem;
-      opacity: 0.7;
+    .feature-item:nth-child(even) .feature-content {
+      order: 1;
     }
 
     /* Footer */
     footer {
       background: var(--cream-dark);
-      padding: 60px 24px;
+      padding: 80px 32px;
       text-align: center;
     }
 
@@ -486,29 +421,30 @@
 
     .footer-brand {
       font-family: 'Fraunces', serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .footer-tagline {
-      font-size: 1rem;
+      font-size: 1.15rem;
       color: var(--ink-light);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
+      gap: 40px;
+      margin-bottom: 40px;
     }
 
     .footer-links a {
       color: var(--wine);
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
+      font-weight: 500;
       transition: color 0.2s ease;
     }
 
@@ -518,94 +454,122 @@
     }
 
     .footer-origin {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--ink-light);
     }
 
-    .footer-origin .heart {
-      display: inline-block;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      html { font-size: 18px; }
+
+      .screenshots {
+        gap: 16px;
+      }
+
+      .phone-placeholder {
+        width: 140px;
+        height: 300px;
+      }
+
+      .phone-placeholder:nth-child(3) {
+        display: none;
+      }
+
       .flow-grid {
         grid-template-columns: 1fr;
-        gap: 48px;
+        gap: 24px;
+        max-width: 500px;
+        margin: 0 auto;
       }
 
-      .flow-grid::before {
-        display: none;
-      }
-
-      .features-grid {
+      /* Stack feature items on mobile */
+      .feature-item,
+      .feature-item:nth-child(even) {
         grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: left;
       }
 
-      .scroll-hint {
-        display: none;
+      .feature-item:nth-child(even) .feature-number,
+      .feature-item:nth-child(even) .feature-content {
+        order: unset;
+      }
+
+      .feature-number {
+        font-size: 3rem;
+      }
+
+      .stats-grid {
+        flex-direction: column;
+        gap: 40px;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
+      html { font-size: 17px; }
+
+      .screenshots {
+        padding: 24px 24px 60px;
+      }
+
+      .phone-placeholder {
+        width: 120px;
+        height: 260px;
+        font-size: 0.75rem;
+      }
+
       .hero {
-        padding: 40px 20px;
+        padding: 60px 24px 80px;
         min-height: auto;
-        padding-top: 80px;
-        padding-bottom: 80px;
       }
 
       .icon {
-        width: 100px;
-        height: 100px;
-        border-radius: 24px;
+        width: 120px;
+        height: 120px;
+        border-radius: 32px;
       }
 
       .section {
-        padding: 60px 20px;
+        padding: 80px 24px;
       }
 
-      .feature-card {
-        padding: 28px 24px;
+      .features-section {
+        padding: 80px 24px;
+      }
+
+      .flow-step {
+        padding: 32px 24px;
+      }
+
+      .feature-item {
+        padding: 40px 0;
       }
 
       .cta-primary {
-        padding: 16px 28px;
-        font-size: 0.95rem;
+        padding: 18px 32px;
+        font-size: 1rem;
+      }
+
+      footer {
+        padding: 60px 24px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background decorations -->
-  <div class="bg-shapes">
-    <div class="wine-stain wine-stain-1"></div>
-    <div class="wine-stain wine-stain-2"></div>
-    <div class="wine-ring wine-ring-1"></div>
-    <div class="wine-ring wine-ring-2"></div>
-    <div class="wine-ring wine-ring-3"></div>
-  </div>
-
   <main>
     <!-- Hero -->
     <section class="hero">
       <div class="icon-wrapper">
-        <div class="icon-glow"></div>
         <img src="icon.png" alt="Uncorked app icon" class="icon">
       </div>
 
       <h1 class="brand">Uncorked</h1>
-      <p class="tagline">Snap. Sip. Remember.</p>
+      <p class="tagline">Scan Wine. Learn More.</p>
 
       <p class="hero-description">
-        Finally, an app that remembers wines as well as you remember drinking them.
-        Snap a photo, and <strong>Uncorked handles the rest</strong> — winery, region, vintage.
-        Your wine brain, minus the hangover.
+        Years of wine photos. Forgotten bottles. Labels you meant to look up.<br><br>
+        <strong>Import them all. We'll do the rest.</strong>
       </p>
 
       <div class="cta-group">
@@ -615,15 +579,15 @@
           </svg>
           Coming Soon to App Store
         </a>
-        <span class="cta-note">Free to download. No account needed.</span>
+        <span class="cta-note">$14.99. No subscription. Ever.</span>
       </div>
+    </section>
 
-      <a href="#how-it-works" class="scroll-hint">
-        <span>Scroll to explore</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
-      </a>
+    <!-- Screenshots -->
+    <section class="screenshots">
+      <div class="phone-placeholder">Screenshot coming soon</div>
+      <div class="phone-placeholder">Screenshot coming soon</div>
+      <div class="phone-placeholder">Screenshot coming soon</div>
     </section>
 
     <!-- How it works -->
@@ -636,97 +600,92 @@
       <div class="flow-grid">
         <div class="flow-step">
           <div class="flow-number">1</div>
-          <span class="flow-icon">📸</span>
-          <h3 class="flow-title">Snap the label</h3>
-          <p class="flow-desc">Point, shoot, done. The AI figures out what you're drinking.</p>
+          <h3 class="flow-title">Dump your camera roll</h3>
+          <p class="flow-desc">Those wine pics from the past few years? Select them all. Go make a coffee.</p>
         </div>
 
         <div class="flow-step">
           <div class="flow-number">2</div>
-          <span class="flow-icon">✨</span>
-          <h3 class="flow-title">Make it yours</h3>
-          <p class="flow-desc">Rate it, jot down notes. "Pairs well with Tuesday" totally counts.</p>
+          <h3 class="flow-title">Or scan on the spot</h3>
+          <p class="flow-desc">At dinner and want to remember this one? Point, shoot, done.</p>
         </div>
 
         <div class="flow-step">
           <div class="flow-number">3</div>
-          <span class="flow-icon">🍷</span>
-          <h3 class="flow-title">Drink smarter</h3>
-          <p class="flow-desc">Next time someone asks for a rec, you'll actually have one.</p>
+          <h3 class="flow-title">Get the backstory</h3>
+          <p class="flow-desc">Why is this Malbec so good? Where even is Ribera del Duero? Now you'll know.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-banner">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">780+</div>
+          <div class="stat-label">Appellations</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">22</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">130+</div>
+          <div class="stat-label">Grape varieties</div>
         </div>
       </div>
     </section>
 
     <!-- Features -->
-    <section class="section features-section">
-      <div class="section-header">
-        <p class="section-label">Features</p>
-        <h2 class="section-title">What's in the bottle</h2>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-              <circle cx="12" cy="13" r="4"/>
-            </svg>
-          </div>
-          <h3 class="feature-title">Smart Label Scanning</h3>
-          <p class="feature-desc">Snap a photo and get more than just text — Uncorked identifies the wine and enriches it with region info, grape varieties, and tasting context. No typing, no googling.</p>
-          <span class="feature-highlight">AI-powered</span>
+    <section class="features-section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="section-label">Features</p>
+          <h2 class="section-title">What's in the bottle</h2>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
+        <div class="features-list">
+          <div class="feature-item">
+            <span class="feature-number">01</span>
+            <div class="feature-content">
+              <h3 class="feature-title">Bulk Photo Import</h3>
+              <p class="feature-desc">Remember that trip to Napa? Neither do we. But your camera roll does. Select them all at once — Uncorked figures them out while you do literally anything else.</p>
+            </div>
           </div>
-          <h3 class="feature-title">Rate Your Way</h3>
-          <p class="feature-desc">Quick 5-star rating for a weeknight wine, or detailed tasting notes when you've found something special. As simple or thorough as you want.</p>
-          <span class="feature-highlight">Flexible</span>
-        </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-            </svg>
+          <div class="feature-item">
+            <span class="feature-number">02</span>
+            <div class="feature-content">
+              <h3 class="feature-title">Live Scanning</h3>
+              <p class="feature-desc">No more typing "that French one with the castle on it" into your notes app. Point at the label. Uncorked tells you everything: region, grapes, the whole story.</p>
+            </div>
           </div>
-          <h3 class="feature-title">Wishlist</h3>
-          <p class="feature-desc">Spotted a bottle at a restaurant? Got a recommendation from a friend? Save it to your wishlist and remember it when you're at the wine shop.</p>
-          <span class="feature-highlight">Never forget</span>
-        </div>
 
-        <div class="feature-card">
-          <div class="feature-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
+          <div class="feature-item">
+            <span class="feature-number">03</span>
+            <div class="feature-content">
+              <h3 class="feature-title">Learn As You Drink</h3>
+              <p class="feature-desc">What makes Burgundy different from Bordeaux? Why does this Riesling taste like petrol (in a good way)? Every wine becomes a 30-second lesson.</p>
+            </div>
           </div>
-          <h3 class="feature-title">Learn As You Drink</h3>
-          <p class="feature-desc">Each wine comes with fun facts — regional history, food pairings, what makes it special. Build confidence without the pretension or the sommelier course.</p>
-          <span class="feature-highlight">Wine curious</span>
+
+          <div class="feature-item">
+            <span class="feature-number">04</span>
+            <div class="feature-content">
+              <h3 class="feature-title">Collection & Wishlist</h3>
+              <p class="feature-desc">Tried it? It's in your collection. Want to try it? Wishlist. Next time someone asks for a rec or you're at the wine shop — you've got answers.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Quote -->
-    <section class="quote-section">
-      <blockquote class="quote">
-        "For the wine curious — people who love wine but don't need to be experts about it."
-      </blockquote>
-      <p class="quote-attr">That's you, right?</p>
-    </section>
   </main>
 
   <footer>
     <div class="footer-content">
       <p class="footer-brand">Uncorked</p>
-      <p class="footer-tagline">Your wine brain. Without the headache.</p>
+      <p class="footer-tagline">Make sense of your wine photos. Learn as you drink.</p>
 
       <nav class="footer-links">
         <a href="privacy.html">Privacy Policy</a>
@@ -734,7 +693,7 @@
       </nav>
 
       <p class="footer-origin">
-        Made in Barcelona with <span class="heart">🍷</span>
+        Made in Barcelona with 🍷
       </p>
     </div>
   </footer>

@@ -13,12 +13,12 @@
     :root {
       --wine: #722F37;
       --wine-dark: #5a252c;
-      --wine-light: #8b3d47;
+      --wine-light: #9b4a54;
       --cream: #faf6f2;
       --cream-dark: #f0e8e0;
       --blush: #e8d5d0;
       --ink: #2a1f1f;
-      --ink-light: #5c4a4a;
+      --ink-light: #6b5454;
     }
 
     * {
@@ -27,16 +27,23 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+      font-size: 20px;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--ink);
       line-height: 1.7;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* Background shapes */
-    .bg-shapes {
+    /* Subtle dot pattern + warm glow */
+    body::before {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
@@ -44,40 +51,25 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(114, 47, 55, 0.09) 1px, transparent 1px);
+      background-size: 20px 20px;
     }
 
-    .wine-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid var(--blush);
-      opacity: 0.5;
-    }
-
-    .wine-ring-1 {
-      width: 300px;
-      height: 300px;
-      top: -80px;
-      right: -80px;
-      border-width: 2px;
-    }
-
-    .wine-ring-2 {
-      width: 200px;
-      height: 200px;
-      bottom: 10%;
-      left: -60px;
-    }
-
-    .wine-stain {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, var(--blush) 0%, transparent 70%);
-      opacity: 0.3;
-      width: 400px;
-      height: 400px;
-      bottom: -10%;
-      right: -10%;
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 10%, rgba(114, 47, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 70% at 90% 20%, rgba(232, 213, 208, 0.7) 0%, transparent 45%),
+        radial-gradient(ellipse 90% 80% at 5% 90%, rgba(232, 213, 208, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(114, 47, 55, 0.06) 0%, transparent 40%);
     }
 
     /* Main content */
@@ -95,7 +87,7 @@
       gap: 8px;
       color: var(--wine);
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 500;
       margin-bottom: 40px;
       transition: color 0.2s ease;
@@ -125,7 +117,7 @@
 
     .meta {
       color: var(--ink-light);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .content {
@@ -151,7 +143,7 @@
     }
 
     h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--ink);
       margin-top: 24px;
@@ -161,6 +153,7 @@
     p {
       color: var(--ink-light);
       margin-bottom: 16px;
+      font-size: 1.05rem;
     }
 
     p strong {
@@ -172,6 +165,7 @@
       color: var(--ink-light);
       margin-bottom: 16px;
       padding-left: 24px;
+      font-size: 1.05rem;
     }
 
     li {
@@ -192,7 +186,7 @@
       width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     th, td {
@@ -221,7 +215,7 @@
     /* Footer */
     footer {
       background: var(--cream-dark);
-      padding: 60px 24px;
+      padding: 80px 32px;
       text-align: center;
       margin-top: 80px;
     }
@@ -233,29 +227,30 @@
 
     .footer-brand {
       font-family: 'Fraunces', serif;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .footer-tagline {
-      font-size: 1rem;
+      font-size: 1.15rem;
       color: var(--ink-light);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
+      gap: 40px;
+      margin-bottom: 40px;
     }
 
     .footer-links a {
       color: var(--wine);
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
+      font-weight: 500;
       transition: color 0.2s ease;
     }
 
@@ -265,21 +260,17 @@
     }
 
     .footer-origin {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--ink-light);
     }
 
-    .footer-origin .heart {
-      display: inline-block;
-      animation: pulse 1.5s ease-in-out infinite;
+    @media (max-width: 900px) {
+      html { font-size: 18px; }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
+    @media (max-width: 600px) {
+      html { font-size: 17px; }
 
-    @media (max-width: 480px) {
       main {
         padding: 40px 20px;
       }
@@ -287,22 +278,18 @@
         padding: 28px 24px;
       }
       table {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
       }
       th, td {
         padding: 10px 8px;
+      }
+      footer {
+        padding: 60px 24px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background decorations -->
-  <div class="bg-shapes">
-    <div class="wine-stain"></div>
-    <div class="wine-ring wine-ring-1"></div>
-    <div class="wine-ring wine-ring-2"></div>
-  </div>
-
   <main>
     <a href="./" class="back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -376,14 +363,14 @@
       <p>If we update this policy, we'll post the new version here with an updated date.</p>
 
       <h2>Contact</h2>
-      <p>Questions? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqgb4r6Ez3WQSzGRbRZA_HNLOWEcs-tSoEN6WwY6wsIt2YYw/viewform">Get in touch</a>.</p>
+      <p>Questions? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqgb4r6Ez3WQSzGRbRZA_HNLOWEcs-tSoEN6WwY6wsIt2YYw/viewform" target="_blank" rel="noopener">Get in touch</a>.</p>
     </div>
   </main>
 
   <footer>
     <div class="footer-content">
       <p class="footer-brand">Uncorked</p>
-      <p class="footer-tagline">Your wine brain. Without the headache.</p>
+      <p class="footer-tagline">Make sense of your wine photos. Learn as you drink.</p>
 
       <nav class="footer-links">
         <a href="./">Home</a>
@@ -391,7 +378,7 @@
       </nav>
 
       <p class="footer-origin">
-        Made in Barcelona with <span class="heart">🍷</span>
+        Made in Barcelona with 🍷
       </p>
     </div>
   </footer>
